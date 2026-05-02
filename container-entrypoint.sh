@@ -5,7 +5,7 @@ for f in /container-entrypoint.d/*.sh; do
     echo "$0: running $f"; . "$f"
 done
 
-if [ "$1" = "init-loop" ];then
+if [ "$1" = "init-loop" ] || [ "$1" = "sleep" ];then
     echo "Looping forever..." >&2
     while :; do sleep 1; done
 else
