@@ -1,2 +1,3 @@
-
 docker-entrypoint.tar.gz
+.agent
+.claude
