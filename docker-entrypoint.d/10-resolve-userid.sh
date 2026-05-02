@@ -4,7 +4,7 @@
 if ! whoami &> /dev/null; then
   if [ -w /etc/passwd ]; then
     grep -q "^${RUNUSER}:" /etc/passwd && sed -i "/^${RUNUSER}:/d" /etc/passwd
-    echo "${RUNUSER}:x:`id -u`:0:OpenShift ${RUNUSER}:$HOME:/bin/bash" >> /etc/passwd
+    echo "${RUNUSER}:x:`id -u`:0:${RUNUSER}:$HOME:/bin/bash" >> /etc/passwd
   else
     echo "Failed to update /etc/passwd. Not writable." >&2
   fi
