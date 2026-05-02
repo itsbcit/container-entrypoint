@@ -1,6 +1,7 @@
 #!/bin/sh
 
 for f in /container-entrypoint.d/*.sh; do
+    [ -f "$f" ] || continue
     echo "$0: running $f"; . "$f"
 done
 

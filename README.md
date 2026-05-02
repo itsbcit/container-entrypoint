@@ -8,12 +8,6 @@ A template for scripting container entrypoints with modular, drop-in shell scrip
 
 Entrypoint scripts are sourced, not executed as subshells, so they can modify the shell environment for subsequent scripts.
 
-## Included Scripts
-
-| Script | Purpose | Environment Variables |
-|--------|---------|----------------------|
-| `10-timezone.sh` | Sets the container timezone. | `TZ` — timezone name (e.g. `America/Vancouver`). |
-
 ## Usage
 
 Use as a base image or copy the entrypoint into your own image:
