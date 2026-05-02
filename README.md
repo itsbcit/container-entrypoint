@@ -19,7 +19,7 @@ Entrypoint scripts are sourced, not executed as subshells, so they can modify th
 
 Use as a base image or copy the entrypoint into your own image:
 
-```dockerfile
+```containerfile
 FROM alpine:latest
 
 COPY container-entrypoint.sh /container-entrypoint.sh
@@ -33,7 +33,7 @@ ENTRYPOINT [ "/container-entrypoint.sh" ]
 Run with a custom user:
 
 ```sh
-docker run -e RUNUSER=appuser --user 1000100000 myimage mycommand
+podman run -e RUNUSER=appuser --user 1000100000 myimage mycommand
 ```
 
 ## Adding Custom Scripts

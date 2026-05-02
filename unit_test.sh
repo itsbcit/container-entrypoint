@@ -2,7 +2,7 @@
 
 set -e
 
-DOCKER_RUNUID=1000100000
+RUNUID=1000100000
 
 if [ -z "$1" ];then
     echo ${0} runuser
@@ -11,19 +11,19 @@ fi
 
 case "$1" in
     root) DENV="";                DUSER="";                        DWHO="root" ;;
-    none) DENV="-e RUNUSER=none"; DUSER="--user ${DOCKER_RUNUID}"; DWHO="" ;;
-    *)    DENV="-e RUNUSER=${1}"; DUSER="--user ${DOCKER_RUNUID}"; DWHO=$1 ;;
+    none) DENV="-e RUNUSER=none"; DUSER="--user ${RUNUID}"; DWHO="" ;;
+    *)    DENV="-e RUNUSER=${1}"; DUSER="--user ${RUNUID}"; DWHO=$1 ;;
 esac
 
-# Create test harness Docker container
-container_name=$(docker run -d ${DENV} ${DUSER} bcit/container-entrypoint:latest /bin/sh -c "tail -f /dev/null")
+# Create test harness container
+container_name=$(podman run -d ${DENV} ${DUSER} bcit/container-entrypoint:latest /bin/sh -c "tail -f /dev/null")
 
 # Capture username of container runner
-container_dwho=$(docker exec ${container_name} whoami || exit 0 )
+container_dwho=$(podman exec ${container_name} whoami || exit 0 )
 
 # Clean up harness container
-docker kill $container_name >/dev/null
-docker rm $container_name >/dev/null
+podman kill $container_name >/dev/null
+podman rm $container_name >/dev/null
 
 # Compare container reported user
 if [ "$container_dwho" = "$DWHO" ];then
