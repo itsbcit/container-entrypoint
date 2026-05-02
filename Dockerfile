@@ -1,8 +1,8 @@
 FROM alpine:latest
 
-ADD docker-entrypoint.sh /docker-entrypoint.sh
-ADD docker-entrypoint.d /docker-entrypoint.d
-RUN chmod 555 /docker-entrypoint.sh \
+ADD container-entrypoint.sh /container-entrypoint.sh
+ADD container-entrypoint.d /container-entrypoint.d
+RUN chmod 555 /container-entrypoint.sh \
  && chmod 664 /etc/passwd /etc/group
 
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
+ENTRYPOINT [ "/container-entrypoint.sh" ]

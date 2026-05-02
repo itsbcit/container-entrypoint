@@ -16,7 +16,7 @@ case "$1" in
 esac
 
 # Create test harness Docker container
-container_name=$(docker run -d ${DENV} ${DUSER} bcit/docker-entrypoint:latest /bin/sh -c "tail -f /dev/null")
+container_name=$(docker run -d ${DENV} ${DUSER} bcit/container-entrypoint:latest /bin/sh -c "tail -f /dev/null")
 
 # Capture username of container runner
 container_dwho=$(docker exec ${container_name} whoami || exit 0 )

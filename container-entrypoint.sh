@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for f in /docker-entrypoint.d/*.sh; do
+for f in /container-entrypoint.d/*.sh; do
     echo "$0: running $f"; . "$f"
 done
 
